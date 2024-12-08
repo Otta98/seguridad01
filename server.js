@@ -5,6 +5,15 @@ const bodyParser  = require('body-parser');
 const cors        = require('cors');
 const helmet      = require('helmet'); // Seguridad adicional
 
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'"],
+    styleSrc: ["'self'"],
+    imgSrc: ["'self'"],
+  }
+}));
+
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
